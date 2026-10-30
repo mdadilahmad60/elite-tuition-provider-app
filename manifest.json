@@ -1,0 +1,12 @@
+{
+  "id": "com.elitetuitionprovider.app",
+  "name": "ELITE TUITION PROVIDER",
+  "short_name": "ELITE",
+  "description": "Student, Tutor and Staff Management App",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#123b8b"
+}
