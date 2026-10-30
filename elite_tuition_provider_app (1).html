@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17365d">
+<title>ELITE TUITION PROVIDER | Management App</title>
+<style>
+:root{--navy:#17365d;--blue:#1f4e79;--teal:#0f6b78;--gold:#c49a3a;--bg:#f3f6fa;--ink:#243247;--muted:#687789;--line:#dce4ed;--white:#fff;--red:#b42318;--green:#16794b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:19px;font-weight:800;letter-spacing:.4px}.sub{font-size:12px;color:#d7e4f2}
+.wrap{max-width:1200px;margin:auto;padding:16px}
+.notice{background:#fff8e6;border:1px solid #f0d99a;padding:10px 12px;border-radius:10px;color:#70551a;margin-bottom:14px;font-size:12px}
+.layout{display:grid;grid-template-columns:205px 1fr;gap:16px}
+nav{background:#fff;border:1px solid var(--line);border-radius:13px;padding:8px;height:max-content;position:sticky;top:10px}
+nav button{width:100%;border:0;background:transparent;text-align:left;padding:11px;border-radius:8px;color:#34445a;font-weight:600;cursor:pointer;margin:2px 0}
+nav button.active,nav button:hover{background:#eaf1f8;color:var(--navy)}
+main{min-width:0}.pagehead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:2px 0 14px}
+h1{font-size:22px;margin:0;color:var(--navy)}h2{font-size:15px;margin:0 0 12px;color:var(--navy)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.card,.panel{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px}
+.k{font-size:12px;color:var(--muted)}.v{font-size:24px;font-weight:800;color:var(--navy);margin-top:3px}
+.btn{border:0;border-radius:8px;padding:9px 13px;background:var(--teal);color:#fff;font-weight:700;cursor:pointer}
+.btn.secondary{background:#eaf1f8;color:var(--navy)}.btn.danger{background:#fae8e7;color:var(--red)}
+.actions{display:flex;gap:7px;flex-wrap:wrap}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select,textarea{width:100%;border:1px solid #cbd6e2;border-radius:8px;padding:9px;background:#fff;color:var(--ink);font:inherit}
+label{font-size:12px;font-weight:700;color:#526276;display:block;margin:0 0 5px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.field.full{grid-column:1/-1}
+table{border-collapse:collapse;width:100%;font-size:12px;min-width:700px}th{background:#eaf1f8;color:var(--navy);text-align:left}td,th{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.empty{padding:25px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#0b1c2d88;display:none;align-items:center;justify-content:center;padding:15px;z-index:5}
+.modal.show{display:flex}.dialog{background:#fff;border-radius:14px;width:min(720px,100%);max-height:90vh;overflow:auto;padding:18px}
+.dialoghead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+small.muted{color:var(--muted)}.tag{display:inline-block;padding:3px 7px;border-radius:99px;background:#eaf1f8;color:var(--blue);font-size:11px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}nav{position:static;display:flex;overflow:auto;gap:3px}nav button{white-space:nowrap;width:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+@media print{header,nav,.toolbar,.actions,.notice,footer,.btn{display:none!important}.layout{display:block}.wrap{padding:0}.panel,.card{break-inside:avoid}body{background:#fff}}
+</style></head>
+<body>
+<header><div><div class="brand">ELITE TUITION PROVIDER</div><div class="sub">ADMIN & STAFF MANAGEMENT PANEL</div></div><div class="sub">Ranchi • Lohardaga • Khunti • Nearby Areas</div></header>
+<div class="wrap">
+<div class="notice"><b>Local storage:</b> Records are saved in this browser on this device only. They do not automatically sync to other phones or computers. Use Backup regularly.</div>
+<div class="layout">
+<nav id="nav">
+<button class="active" data-page="Dashboard">▦ Dashboard</button>
+<button data-page="Students">♙ Students</button><button data-page="Tutors">♧ Tutors</button>
+<button data-page="Assignments">⇄ Assignments</button><button data-page="Fees">₹ Fees & Payments</button>
+<button data-page="Enquiries">✉ Enquiries</button><button data-page="Follow-ups">✓ Follow-ups</button>
+<button data-page="Backup">⚙ Backup & Settings</button>
+</nav>
+<main id="main"></main>
+</div><footer>ELITE TUITION PROVIDER • Contact / WhatsApp: +91 9122459605</footer>
+</div>
+<div class="modal" id="modal"><div class="dialog"><div class="dialoghead"><h2 id="modalTitle">Add Record</h2><button class="btn secondary" onclick="closeModal()">Close</button></div><form id="recordForm"><div id="formFields" class="formgrid"></div><div class="actions" style="margin-top:16px"><button class="btn" type="submit">Save Record</button><button class="btn secondary" type="button" onclick="closeModal()">Cancel</button></div></form></div></div>
+<script>
+const keys={Students:"students",Tutors:"tutors",Assignments:"assignments",Fees:"fees",Enquiries:"enquiries","Follow-ups":"followups"};
+const schemas={
+Students:[["id","Student ID"],["date","Admission Date","date"],["name","Student Name"],["class","Class"],["board","Board"],["subjects","Subjects"],["medium","Medium"],["parent","Parent / Guardian"],["mobile","Mobile"],["district","District","select","Ranchi|Lohardaga|Khunti|Other / Nearby"],["block","Block / Town"],["area","Area / Locality"],["status","Status","select","New|Demo Scheduled|Active|On Hold|Completed|Closed"],["tutorId","Assigned Tutor ID"],["fee","Monthly Fee (₹)","number"],["schedule","Preferred Days / Time"],["address","Full Address / PIN","textarea"]],
+Tutors:[["id","Tutor ID"],["date","Registration Date","date"],["name","Tutor Name"],["mobile","Mobile"],["qualification","Qualification"],["experience","Experience"],["classes","Classes"],["subjects","Subjects"],["medium","Teaching Medium"],["district","Preferred District","select","Ranchi|Lohardaga|Khunti|Other / Nearby"],["area","Preferred Area / Block"],["status","Status","select","New|Under Review|Active|On Hold|Inactive"],["availability","Available Days / Time"],["expectedFee","Expected Fee (₹)","number"],["notes","Documents / Notes","textarea"]],
+Assignments:[["id","Assignment ID"],["studentId","Student ID"],["student","Student Name"],["tutorId","Tutor ID"],["tutor","Tutor Name"],["district","District","select","Ranchi|Lohardaga|Khunti|Other / Nearby"],["area","Area / Locality"],["subjects","Class / Subjects"],["start","Start Date","date"],["fee","Agreed Monthly Fee (₹)","number"],["schedule","Schedule"],["status","Status","select","Proposed|Demo|Active|On Hold|Completed|Cancelled"],["notes","Notes","textarea"]],
+Fees:[["receipt","Receipt No."],["date","Payment Date","date"],["studentId","Student ID"],["student","Student Name"],["period","Month / Period"],["due","Monthly Fee Due (₹)","number"],["received","Amount Received (₹)","number"],["mode","Payment Mode","select","Cash|UPI|Bank Transfer|Other"],["ref","Transaction Reference"],["tutorId","Tutor ID"],["monthNo","Payment Month No. (1 = first month)","number"],["notes","Notes","textarea"]],
+Enquiries:[["id","Enquiry ID"],["date","Enquiry Date","date"],["name","Parent / Student Name"],["mobile","Mobile"],["class","Student Class"],["subjects","Subjects"],["district","District","select","Ranchi|Lohardaga|Khunti|Other / Nearby"],["area","Area / Locality"],["source","Source"],["status","Status","select","Open|Contacted|Demo Scheduled|Converted|Not Interested|Closed"],["demo","Demo Date","date"],["follow","Next Follow-up","date"],["notes","Outcome / Notes","textarea"]],
+"Follow-ups":[["id","Task ID"],["date","Date Added","date"],["related","Student / Tutor ID"],["name","Name"],["area","District / Area"],["type","Task Type","select","Call|WhatsApp|Demo|Document Check|Fee Reminder|Parent Feedback|Other"],["due","Follow-up Due","date"],["assigned","Assigned To"],["priority","Priority","select","High|Medium|Low"],["status","Status","select","Pending|In Progress|Done|Cancelled"],["notes","Notes","textarea"]]
+};
+let page="Dashboard", editIndex=null;
+const get=k=>JSON.parse(localStorage.getItem(k)||"[]");
+const put=(k,v)=>{localStorage.setItem(k,JSON.stringify(v));};
+const money=n=>"₹"+(Number(n||0)).toLocaleString("en-IN",{maximumFractionDigits:2});
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ if(page==="Dashboard") return dashboard();
+ if(page==="Backup") return backup();
+ const data=get(keys[page]); const fields=schemas[page];
+ document.getElementById("main").innerHTML=`<div class="pagehead"><div><h1>${page}</h1><small class="muted">${data.length} record(s) saved on this device</small></div><button class="btn" onclick="addRecord()">+ Add ${page.slice(0,-1)||"Record"}</button></div><div class="toolbar"><input id="search" placeholder="Search records..." oninput="filterTable()" style="max-width:320px"><button class="btn secondary" onclick="window.print()">Print</button></div><div class="tablewrap"><table><thead><tr>${fields.map(f=>`<th>${f[1]}</th>`).join("")}<th>Actions</th></tr></thead><tbody id="tbody">${rowsHtml(data,fields)}</tbody></table></div>`;
+}
+function rowsHtml(data,fields){if(!data.length)return `<tr><td colspan="${fields.length+1}" class="empty">No records yet. Click “Add” to begin.</td></tr>`;return data.map((o,i)=>`<tr>${fields.map(f=>`<td>${esc(o[f[0]])}</td>`).join("")}<td><div class="actions"><button class="btn secondary" onclick="editRecord(${i})">Edit</button><button class="btn danger" onclick="deleteRecord(${i})">Delete</button></div></td></tr>`).join("");}
+function dashboard(){
+ const students=get("students"),tutors=get("tutors"),fees=get("fees"),enq=get("enquiries"),ass=get("assignments");
+ const activeS=students.filter(x=>x.status==="Active").length,activeT=tutors.filter(x=>x.status==="Active").length;
+ const received=fees.reduce((s,x)=>s+Number(x.received||0),0),due=fees.reduce((s,x)=>s+Math.max(Number(x.due||0)-Number(x.received||0),0),0);
+ document.getElementById("main").innerHTML=`<div class="pagehead"><div><h1>Dashboard</h1><small class="muted">Business overview at a glance</small></div><button class="btn secondary" onclick="window.print()">Print Dashboard</button></div>
+ <div class="cards">${[["Total Students",students.length],["Active Students",activeS],["Registered Tutors",tutors.length],["Active Tutors",activeT],["Total Fee Received",money(received)],["Recorded Balance",money(due)],["Assignments",ass.length],["Open Enquiries",enq.filter(x=>x.status==="Open").length]].map(x=>`<div class="card"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join("")}</div>
+ <div class="panel"><h2>Quick actions</h2><div class="actions">${["Students","Tutors","Assignments","Fees","Enquiries","Follow-ups"].map(x=>`<button class="btn secondary" onclick="go('${x}')">+ ${x}</button>`).join("")}</div></div>
+ <div class="panel" style="margin-top:12px"><h2>Service coverage</h2><span class="tag">Ranchi</span> <span class="tag">Lohardaga</span> <span class="tag">Khunti</span> <span class="tag">Nearby Areas</span><p class="muted">Confirm tutor availability and travel feasibility for each specific locality before accepting an assignment.</p></div>`;
+}
+function go(p){page=p;render();}
+document.getElementById("nav").addEventListener("click",e=>{let b=e.target.closest("button[data-page]");if(b)go(b.dataset.page);});
+function addRecord(){editIndex=null;openForm({});}
+function editRecord(i){editIndex=i;openForm(get(keys[page])[i]);}
+function openForm(obj){
+ document.getElementById("modalTitle").textContent=(editIndex===null?"Add ":"Edit ")+page+" Record";
+ document.getElementById("formFields").innerHTML=schemas[page].map(f=>{let val=obj[f[0]]??"";let html=f[2]==="select"?`<select name="${f[0]}"><option value="">Select...</option>${f[3].split("|").map(v=>`<option ${val===v?"selected":""}>${v}</option>`).join("")}</select>`:f[2]==="textarea"?`<textarea name="${f[0]}" rows="2">${esc(val)}</textarea>`:`<input name="${f[0]}" type="${f[2]||"text"}" value="${esc(val)}">`;return `<div class="field ${f[2]==="textarea"?"full":""}"><label>${f[1]}</label>${html}</div>`;}).join("");
+ document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show");}
+document.getElementById("recordForm").addEventListener("submit",e=>{
+ e.preventDefault();let data=get(keys[page]);let obj={};new FormData(e.target).forEach((v,k)=>obj[k]=v);
+ if(page==="Fees"){let amt=Number(obj.received||0),m=Number(obj.monthNo||0);obj.tutorShare=(amt*(m===1?.5:.8)).toFixed(2);obj.companyShare=(amt-Number(obj.tutorShare)).toFixed(2);}
+ if(editIndex===null)data.push(obj);else data[editIndex]=obj;
+ put(keys[page],data);closeModal();render();
+});
+function deleteRecord(i){if(confirm("Delete this record? This cannot be undone unless you have a backup.")){let d=get(keys[page]);d.splice(i,1);put(keys[page],d);render();}}
+function filterTable(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#tbody tr").forEach(tr=>tr.style.display=tr.innerText.toLowerCase().includes(q)?"":"none");}
+function backup(){
+ document.getElementById("main").innerHTML=`<div class="pagehead"><h1>Backup & Settings</h1></div><div class="panel"><h2>Backup your records</h2><p>Download a JSON backup file regularly. Keep it in a safe place. The backup contains personal contact information; do not share it publicly.</p><div class="actions"><button class="btn" onclick="downloadBackup()">Download Backup</button><label class="btn secondary" style="cursor:pointer">Restore Backup<input type="file" accept=".json,application/json" onchange="restoreBackup(event)" style="display:none"></label></div></div><div class="panel" style="margin-top:12px"><h2>Important local-storage notes</h2><ul><li>Data stays in this browser on this device.</li><li>Clearing browser data may erase records.</li><li>Other staff devices will not see these records automatically.</li><li>Use backup before changing or resetting the device.</li></ul></div><div class="panel" style="margin-top:12px"><h2>Fee sharing used by this app</h2><p>Payment month 1: Tutor 50% / Company 50%.</p><p>Payment month 2 onward: Tutor 80% / Company 20%.</p><p class="muted">Calculated on amount actually received. Confirm the agreed terms for each assignment.</p></div>`;
+}
+function downloadBackup(){let all={};Object.values(keys).forEach(k=>all[k]=get(k));let blob=new Blob([JSON.stringify({app:"ELITE TUITION PROVIDER",created:new Date().toISOString(),data:all},null,2)],{type:"application/json"});let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ELITE_TUITION_PROVIDER_Backup.json";a.click();URL.revokeObjectURL(a.href);}
+function restoreBackup(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.data)throw Error();if(!confirm("Restore will replace current records on this device. Continue?"))return;Object.values(keys).forEach(k=>put(k,x.data[k]||[]));alert("Backup restored.");go("Dashboard");}catch(e){alert("Invalid backup file.");}};r.readAsText(f);}
+render();
+</script></body></html>
