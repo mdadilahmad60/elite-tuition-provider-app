@@ -1,5 +1,5 @@
 {
-  "id": "com.elitetuitionprovider.app",
+  "id": "./",
   "name": "ELITE TUITION PROVIDER",
   "short_name": "ELITE",
   "description": "Student, Tutor and Staff Management App",
@@ -8,5 +8,19 @@
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
-  "theme_color": "#123b8b"
+  "theme_color": "#123b8b",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }
