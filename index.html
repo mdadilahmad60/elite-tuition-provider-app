@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+ <link rel="manifest" href="./manifest.json">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#17365d">
 <title>ELITE TUITION PROVIDER | Management App</title>
@@ -37,6 +38,14 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}nav{position:static;display:flex;overflow:auto;gap:3px}nav button{white-space:nowrap;width:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 @media print{header,nav,.toolbar,.actions,.notice,footer,.btn{display:none!important}.layout{display:block}.wrap{padding:0}.panel,.card{break-inside:avoid}body{background:#fff}}
 </style></head>
+ <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(error => console.log("SW Error:", error));
+  });
+}
+ </script>
 <body>
 <header><div><div class="brand">ELITE TUITION PROVIDER</div><div class="sub">ADMIN & STAFF MANAGEMENT PANEL</div></div><div class="sub">Ranchi • Lohardaga • Khunti • Nearby Areas</div></header>
 <div class="wrap">
