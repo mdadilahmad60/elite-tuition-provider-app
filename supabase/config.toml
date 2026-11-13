@@ -1,0 +1,4 @@
+project_id = "elite-tuition-provider"
+
+[functions.submit-enquiry]
+verify_jwt = false
